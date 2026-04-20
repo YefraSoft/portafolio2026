@@ -1,0 +1,101 @@
+---
+// src/components/layout/Footer.astro
+import {
+  getLangFromUrl,
+  useTranslations,
+  getLocalizedPath,
+} from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/YefraSoft" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/efrain-garcia-suarez-227a88401",
+  },
+];
+---
+
+<footer class="border-t bg-bg border-subtle">
+  <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Brand -->
+      <div class="flex flex-col items-center md:items-start gap-1">
+        <span class="font-display text-lg font-semibold text-ink">
+          <span class="text-accent">Efrain Garcia/</span>YefraSoft
+        </span>
+        <span class="text-xs text-ink/30 font-mono">
+          {t("hero.role")}
+        </span>
+      </div>
+
+      <!-- Quick links -->
+      <nav class="flex items-center gap-6" aria-label="Footer navigation">
+        {
+          [
+            {
+              key: "nav.portfolio" as const,
+              href: getLocalizedPath("/portfolio", lang),
+            },
+            {
+              key: "nav.services" as const,
+              href: getLocalizedPath("/services", lang),
+            },
+            { key: "nav.blog" as const, href: getLocalizedPath("/blog", lang) },
+            {
+              key: "nav.contact" as const,
+              href: getLocalizedPath("/contact", lang),
+            },
+          ].map(({ key, href }) => (
+            <a
+              href={href}
+              class="text-xs text-ink/40 hover:text-ink transition-colors duration-200"
+            >
+              {t(key)}
+            </a>
+          ))
+        }
+      </nav>
+
+      <!-- Socials -->
+      <div class="flex items-center gap-4">
+        {
+          socialLinks.map(({ label, href }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-mono text-ink/30 hover:text-accent transition-colors duration-200"
+              aria-label={label}
+            >
+              {label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div
+      class="mt-8 pt-6 border-t border-subtle flex flex-col md:flex-row items-center justify-between gap-2"
+    >
+      <p class="text-xs text-ink/20 font-mono">
+        © {year} YefraSoft. {t("footer.rights")}
+        <!-- 🔧 Replace -->
+      </p>
+      <p class="text-xs text-ink/20 font-mono">
+        {t("footer.built_with")}
+        <a
+          href="https://astro.build"
+          class="hover:text-accent transition-colors">Astro</a
+        > & <a
+          href="https://tailwindcss.com"
+          class="hover:text-accent transition-colors">Tailwind</a
+        >
+      </p>
+    </div>
+  </div>
+</footer>

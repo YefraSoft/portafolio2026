@@ -1,0 +1,550 @@
+---
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div id="cv" class="min-h-screen bg-surface-0 pt-32 pb-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header Section -->
+    <header class="mb-16 space-y-8">
+      <div class="flex flex-col items-center md:flex-row md:items-start gap-6">
+        <!-- Profile Image -->
+        <div data-animate>
+          <div
+            class="w-auto h-62 rounded-xl overflow-hidden border border-subtle bg-surface-1 shrink-0"
+          >
+            <img
+              src="https://res.cloudinary.com/yefrasoft/image/upload/v1743822052/profile_l5wsfc.webp"
+              alt={t("cv.name")}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Header Information -->
+        <div class="space-y-4">
+          <div data-animate>
+            <h1
+              class="font-display text-4xl md:text-5xl font-semibold text-ink mb-2"
+            >
+              {t("cv.name")}
+            </h1>
+            <p class="text-xl text-gradient-accent font-medium">
+              {t("cv.role")}
+            </p>
+          </div>
+
+          <!-- Contact Info -->
+          <div
+            class="grid md:grid-cols-2 gap-4 text-sm text-ink/60 pt-4"
+            data-animate
+          >
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-4 h-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>{t("cv.location")}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-4 h-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>{t("cv.phone")}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg
+                class="w-4 h-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="m22 6-10 7L2 6"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>{t("cv.email")}</span>
+            </div>
+            <a
+              href="https://github.com/YefraSoft"
+              class="flex items-center gap-2 hover:text-accent transition-colors"
+            >
+              <svg
+                class="w-4 h-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <span>YefraSoft</span>
+            </a>
+          </div>
+
+          <!-- Bio -->
+          <p class="text-ink/60 leading-relaxed pt-4" data-animate>
+            {t("cv.bio")}
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <div class="grid md:grid-cols-3 gap-12">
+      <!-- Left Sidebar -->
+      <aside class="space-y-12 md:col-span-1">
+        <!-- Specialties -->
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-4 uppercase tracking-widest"
+          >
+            {t("cv.specialties")}
+          </h2>
+          <div class="flex gap-3 space-y-3 *:w-28 *:h-28">
+            <div
+              class="p-4 bg-surface-1 border border-subtle rounded-lg text-center hover:border-accent/40 transition-colors"
+            >
+              <svg
+                class="w-8 h-8 mx-auto mb-2 text-accent"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <rect
+                  x="2"
+                  y="3"
+                  width="20"
+                  height="14"
+                  rx="2"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></rect>
+                <path
+                  d="M2 17h20"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M6 21h12"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <p class="text-xs font-medium text-ink">{t("cv.desktop")}</p>
+            </div>
+            <div
+              class="p-4 bg-surface-1 border border-subtle rounded-lg text-center hover:border-accent/40 transition-colors"
+            >
+              <svg
+                class="w-8 h-8 mx-auto mb-2 text-accent"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <rect
+                  x="5"
+                  y="2"
+                  width="14"
+                  height="20"
+                  rx="2"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></rect>
+                <path
+                  d="M12 18h.01"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <p class="text-xs font-medium text-ink">{t("cv.mobile")}</p>
+            </div>
+            <div
+              class="p-4 bg-surface-1 border border-subtle rounded-lg text-center hover:border-accent/40 transition-colors"
+            >
+              <svg
+                class="w-8 h-8 mx-auto mb-2 text-accent"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  d="M12 2v20M7 7a5 5 0 0 1 10 0M3 12a9 9 0 0 1 18 0"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+              <p class="text-xs font-medium text-ink">{t("cv.ai")}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Languages & Frameworks -->
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-4 uppercase tracking-widest"
+          >
+            {t("cv.languages")}
+          </h2>
+          <ul class="space-y-2 text-sm text-ink/60">
+            <li>C# • Java • Kotlin</li>
+            <li>JavaScript • TypeScript</li>
+            <li>HTML • CSS • Python</li>
+            <li>C++ • SQL</li>
+          </ul>
+        </section>
+
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-4 uppercase tracking-widest"
+          >
+            {t("cv.frameworks")}
+          </h2>
+          <ul class="space-y-2 text-sm text-ink/60">
+            <li>.NET (MAUI, WPF)</li>
+            <li>Spring Boot</li>
+            <li>React • Next.js</li>
+            <li>Nest.js</li>
+            <li>Astro</li>
+          </ul>
+        </section>
+
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-4 uppercase tracking-widest"
+          >
+            {t("cv.tools")}
+          </h2>
+          <ul class="space-y-2 text-sm text-ink/60">
+            <li>SQL Server • MySQL</li>
+            <li>Git • GitHub</li>
+            <li>VS Code • Visual Studio</li>
+            <li>Docker • Azure</li>
+            <li>ClickUp • Figma</li>
+          </ul>
+        </section>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="space-y-12 md:col-span-2">
+        <!-- Experience -->
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-6 uppercase tracking-widest flex items-center gap-2"
+          >
+            <span
+              class="w-8 h-8 flex items-center justify-center rounded border border-accent/30 text-accent text-xs font-semibold"
+              >01</span
+            >
+            {t("cv.experience")}
+          </h2>
+          <div class="space-y-8">
+            <article
+              class="border-l-2 border-accent/30 pl-6 hover:border-accent transition-colors"
+            >
+              <p class="text-xs font-mono text-accent/60 mb-1">
+                {t("cv.exp1.period")}
+              </p>
+              <h3 class="text-lg font-semibold text-ink mb-1">
+                {t("cv.exp1.title")}
+              </h3>
+              <p class="text-sm text-ink/60">{t("cv.exp1.company")}</p>
+            </article>
+            <article
+              class="border-l-2 border-accent/30 pl-6 hover:border-accent transition-colors"
+            >
+              <p class="text-xs font-mono text-accent/60 mb-1">
+                {t("cv.exp2.period")}
+              </p>
+              <h3 class="text-lg font-semibold text-ink mb-1">
+                {t("cv.exp2.title")}
+              </h3>
+              <p class="text-sm text-ink/60">{t("cv.exp2.company")}</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Education -->
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-6 uppercase tracking-widest flex items-center gap-2"
+          >
+            <span
+              class="w-8 h-8 flex items-center justify-center rounded border border-accent/30 text-accent text-xs font-semibold"
+              >02</span
+            >
+            {t("cv.education")}
+          </h2>
+          <div class="space-y-6">
+            <article class="border-l-2 border-accent/30 pl-6">
+              <h3 class="text-lg font-semibold text-ink mb-1">
+                {t("cv.edu1")}
+              </h3>
+              <p class="text-xs text-accent/60">ITTG • Zapopan, Jalisco</p>
+              <p class="text-sm text-ink/60 mt-1">{t("cv.edu1.status")}</p>
+            </article>
+            <article class="border-l-2 border-accent/30 pl-6">
+              <h3 class="text-lg font-semibold text-ink mb-1">
+                {t("cv.edu2")}
+              </h3>
+              <p class="text-xs text-accent/60">CONALEP • Apatzingán</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Featured Projects -->
+        <section data-animate>
+          <h2
+            class="text-xs font-mono text-accent mb-6 uppercase tracking-widest flex items-center gap-2"
+          >
+            <span
+              class="w-8 h-8 flex items-center justify-center rounded border border-accent/30 text-accent text-xs font-semibold"
+              >03</span
+            >
+            {t("cv.projects")}
+          </h2>
+          <div class="space-y-8">
+            <!-- Project 1 -->
+            <article
+              class="bg-surface-1 border border-subtle rounded-lg p-6 hover:border-accent/40 transition-colors"
+            >
+              <div class="flex items-start justify-between mb-3">
+                <div>
+                  <h3 class="text-lg font-semibold text-ink">
+                    Fundación Dirección Correcta
+                  </h3>
+                  <p class="text-sm text-ink/60 mt-1">
+                    Web platform for donations and transparency
+                  </p>
+                </div>
+                <svg
+                  class="w-6 h-6 text-accent shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-mono"
+                  >Next.js 15</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-mono"
+                  >TypeScript</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-mono"
+                  >Material Design</span
+                >
+              </div>
+              <p class="text-sm text-ink/60 mb-4">
+                Leadership and frontend development of a modern donation
+                platform with emphasis on user trust and information clarity.
+              </p>
+              <div class="flex gap-4 text-sm">
+                <a
+                  href="https://github.com/YefraSoft/FundacionDireccionCorrecta"
+                  class="text-accent hover:text-accent/80 transition-colors flex items-center gap-1"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path
+                      d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                  Repository
+                </a>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article
+              class="bg-surface-1 border border-subtle rounded-lg p-6 hover:border-accent/40 transition-colors"
+            >
+              <div class="flex items-start justify-between mb-3">
+                <div>
+                  <h3 class="text-lg font-semibold text-ink">
+                    Lalo's Pizza - POS System
+                  </h3>
+                  <p class="text-sm text-ink/60 mt-1">
+                    Desktop point-of-sale system for pizzeria management
+                  </p>
+                </div>
+                <svg
+                  class="w-6 h-6 text-accent shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span
+                  class="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-mono"
+                  >C#</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-mono"
+                  >WPF</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-accent/10 text-accent rounded-full font-mono"
+                  >Entity Framework Core</span
+                >
+              </div>
+              <p class="text-sm text-ink/60 mb-4">
+                Complete desktop POS system with sales management, inventory
+                control, customer database, and thermal printer integration.
+              </p>
+              <div class="flex gap-4 text-sm">
+                <a
+                  href="https://github.com/YefraSoft/lalospizzaproduction"
+                  class="text-accent hover:text-accent/80 transition-colors flex items-center gap-1"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path
+                      d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                  Repository
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<button id="download" class="bg-amber-300">Descargar PDF</button>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+></script>
+
+<script>
+  function replaceUnsupportedColors(element: HTMLElement) {
+    const all = element.querySelectorAll("*");
+    const props = ["color", "backgroundColor", "borderColor", "fill", "stroke"];
+
+    all.forEach((el) => {
+      const style = getComputedStyle(el);
+      props.forEach((prop) => {
+        const value = style[prop as any];
+        if (value && (value.includes("oklab") || value.includes("oklch"))) {
+          (el as HTMLElement).style[prop as any] = "#000000";
+        }
+      });
+    });
+  }
+
+  document.getElementById("download")?.addEventListener("click", async () => {
+    const element = document.getElementById("cv") as HTMLElement;
+    const toolbar = document.querySelector("astro-dev-toolbar") as HTMLElement;
+
+    if (toolbar) toolbar.style.display = "none";
+
+    // Clonar el elemento para no modificar el DOM original
+    const clone = element.cloneNode(true) as HTMLElement;
+    clone.style.position = "absolute";
+    clone.style.left = "-9999px";
+    document.body.appendChild(clone);
+
+    replaceUnsupportedColors(clone);
+
+    try {
+      // @ts-ignore
+      await html2pdf()
+        .set({
+          margin: 0.5,
+          filename: "MiCV.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            ignoreElements: (el: Element) => el.tagName === "ASTRO-DEV-TOOLBAR",
+          },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        })
+        .from(clone)
+        .save();
+
+      console.log("PDF guardado exitosamente");
+    } catch (error) {
+      console.error("Error al generar PDF:", error);
+    } finally {
+      document.body.removeChild(clone);
+      if (toolbar) toolbar.style.display = "";
+    }
+  });
+</script>

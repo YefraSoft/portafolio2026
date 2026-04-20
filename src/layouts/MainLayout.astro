@@ -1,0 +1,104 @@
+---
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+import {
+  getLangFromUrl,
+  getRouteWithoutLocale,
+  languages,
+} from "../i18n/utils";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  lang?: "es" | "en";
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = "/og-default.png",
+  canonicalURL,
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const siteURL = import.meta.env.SITE ?? "https://yefrasoft.com";
+const canonical =
+  canonicalURL ?? new URL(Astro.url.pathname, siteURL).toString();
+const route = getRouteWithoutLocale(Astro.url.pathname);
+const alternateLinks = Object.keys(languages).map((locale) => ({
+  lang: locale,
+  href: getAbsoluteLocaleUrl(locale, route),
+}));
+const fullTitle = `${title} | Efrain Garcia`;
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, siteURL).toString()} />
+    <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, siteURL).toString()} />
+
+    {
+      alternateLinks.map(({ lang, href }) => (
+        <link rel="alternate" hreflang={lang} href={href} />
+      ))
+    }
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" hreflang="x-default" href={siteURL} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="noise bg-bg font-sans">
+    <Header />
+    <main id="main-content" class="text-ink">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-up");
+            entry.target.classList.remove("opacity-0-init");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("[data-animate]").forEach((el) => {
+        el.classList.add("opacity-0-init");
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

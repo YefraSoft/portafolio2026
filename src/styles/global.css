@@ -1,0 +1,86 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+@import "tailwindcss-animated";
+
+@theme {
+    /* Colores — Tailwind v4 genera bg-*, text-*, border-* automáticamente */
+    --color-bg: #0a0a0b;
+    --color-surface-0: #0a0a0b;
+    --color-surface-1: #111113;
+    --color-surface-2: #1a1a1e;
+    --color-surface-3: #252529;
+
+    --color-ink: #e8e8ec;
+    --color-muted: #8b8b99;
+    --color-subtle: #252529;
+    /* ← esto genera border-subtle, bg-subtle */
+
+    --color-accent: #4f8ef7;
+    --color-accent-muted: #1e3a6e;
+
+    /* Fuentes */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+
+/* Base */
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+    background: rgba(79, 142, 247, 0.15);
+    color: var(--color-accent);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-surface-3);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
+}
+
+/* Prose para blog */
+.prose-custom h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-surface-3);
+}
+
+.prose-custom p {
+    margin-bottom: 1.25rem;
+    color: rgba(232, 232, 236, 0.7);
+}
+
+.prose-custom a {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.prose-custom code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    background: var(--color-surface-2);
+    color: var(--color-accent);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+}

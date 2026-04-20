@@ -1,0 +1,12 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Landing from "../../components/templates/Landing.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<MainLayout title={t("title.home")} description={t("title.home.description")}>
+  <Landing lang={lang} />
+</MainLayout>

@@ -1,0 +1,12 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Curriculum from "../../components/templates/Curriculum.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<MainLayout title={t("title.home")} description={t("title.home.description")}>
+  <Curriculum lang={lang} />
+</MainLayout>

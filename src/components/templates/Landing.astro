@@ -1,0 +1,396 @@
+---
+import { useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../i18n/utils";
+import { projectGroups, saasProducts } from "../../assets/proyects";
+import ProjectCard from "../ProjectCard.astro";
+import SaaSCard from "../SaaSCard.astro";
+import ContactForm from "../ContactForm.astro";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const aboutStatsKeys = ["leadership", "teamwork", "learning", "experience"];
+const sectionIds = ["hero", "about", "projects", "saas", "contact"];
+---
+
+<!-- ── Hero ─────────────────────────────────── -->
+<section
+  id="hero"
+  class="min-h-[90vh] flex items-center relative overflow-hidden px-6 scroll-mt-24"
+>
+  <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
+    <!-- Left: Text content -->
+    <div class="space-y-8">
+      <!-- Available badge -->
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 border border-accent/30 rounded-full bg-accent/5 animate-fade-in"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+        <span class="text-xs font-mono text-accent">{t("hero.available")}</span>
+      </div>
+
+      <!-- Heading -->
+      <div class="space-y-2">
+        <p
+          class="text-ink/40 font-mono text-sm animate-fade-up animate-delay-100"
+        >
+          {t("hero.greeting")}
+        </p>
+        <h1
+          class="font-display text-5xl md:text-6xl xl:text-7xl font-semibold leading-[1.05] animate-fade-up animate-delay-200"
+        >
+          <!-- 🔧 Replace with your name -->
+          <span class="text-ink">Efrain</span><br />
+          <span class="text-gradient-accent">Garcia</span>
+        </h1>
+        <p
+          class="font-display text-2xl md:text-3xl text-ink/50 italic font-normal animate-fade-up animate-delay-300"
+        >
+          {t("hero.role")}
+        </p>
+      </div>
+
+      <!-- Specialities -->
+      <div class="flex flex-wrap gap-2 animate-fade-up animate-delay-400">
+        <span
+          class="text-xs font-mono px-3 py-1 border border-subtle text-ink/50 rounded-full"
+        >
+          {t("hero.speciality")}
+        </span>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4 animate-fade-up animate-delay-500">
+        <a
+          href="#projects"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-accent text-surface-0 text-sm font-medium rounded-lg hover:bg-accent/90 transition-all duration-200 hover:-translate-y-0.5"
+        >
+          {t("hero.cta.work")}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+            ><path
+              d="M1 7h12M7 1l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 px-6 py-3 border border-subtle text-ink/70 text-sm font-medium rounded-lg hover:border-accent/40 hover:text-ink transition-all duration-200"
+        >
+          {t("hero.cta.contact")}
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: Decorative terminal card -->
+    <div class="hidden md:block" data-animate>
+      <div
+        class="border border-subtle rounded-xl bg-surface-1 overflow-hidden shadow-2xl"
+      >
+        <!-- Terminal bar -->
+        <div
+          class="flex items-center gap-2 px-4 py-3 border-b border-subtle bg-surface-2"
+        >
+          <span class="w-3 h-3 rounded-full bg-red-500/60"></span>
+          <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span>
+          <span class="w-3 h-3 rounded-full bg-green-500/60"></span>
+          <span class="ml-auto text-xs font-mono text-ink/20"
+            >~/YefraSoft.csproj</span
+          >
+        </div>
+        <!-- Terminal content -->
+        <div class="p-6 font-mono text-sm space-y-2">
+          <p>
+            <span class="text-accent">using</span>
+            <span class="text-ink/60">YefraSoft.Core</span>;
+          </p>
+          <p>
+            <span class="text-accent">using</span>
+            <span class="text-ink/60">YefraSoft.AI</span>;
+          </p>
+          <br />
+          <p>
+            <span class="text-accent">public class</span>
+            <span class="text-green-400/80"> Developer</span>
+          </p>
+          <p>{"{"}</p>
+          <p class="pl-4">
+            <span class="text-accent">public string</span>
+            <span class="text-ink/60"> city</span>
+            <span class="text-ink/40"> =&gt;</span>
+            <span class="text-green-400/80"> "Zapopan-Jalisco"</span>;
+          </p>
+          <p class="pl-4">
+            <span class="text-accent">public string[]</span>
+            <span class="text-ink/60"> skills</span>
+            <span class="text-ink/40"> =&gt;</span>
+            [<br /><span class="text-green-400/80">"React"</span>,
+            <span class="text-green-400/80">".NET"</span>,
+            <span class="text-green-400/80">"Spring Boot"</span>,
+            <span class="text-green-400/80">"NodeJs"</span><br />];
+          </p>
+          <p class="pl-4">
+            <span class="text-accent">public bool</span>
+            <span class="text-ink/60"> available</span>
+            <span class="text-ink/40"> =&gt;</span>
+            <span class="text-accent"> true</span>;
+          </p>
+          <p class="pl-4">
+            <span class="text-accent">public double</span>
+            <span class="text-ink/60"> coffee</span>
+            <span class="text-ink/40"> =&gt;</span>
+            <span class="text-ink/30"> double.PositiveInfinity</span>;
+          </p>
+          <p>{"}"}</p>
+          <br />
+          <p class="text-ink/20">// dotnet run --project YefraSoft</p>
+          <p class="flex items-center gap-1">
+            <span class="text-accent">$</span>
+            <span class="text-ink/60">dotnet publish </span>
+            <span class="text-green-400/80">-c Release</span>
+            <span class="w-2 h-4 bg-accent/80 animate-pulse ml-1"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<button
+  id="section-nav-button"
+  type="button"
+  class="fixed right-6 bottom-6 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full border border-subtle bg-surface-1/90 text-ink shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:text-accent"
+  data-section-ids={JSON.stringify(sectionIds)}
+  data-direction="down"
+  data-rotation="0"
+  aria-label="Ir a la siguiente seccion"
+>
+  <svg
+    id="section-nav-icon"
+    class="pointer-events-none transition-transform duration-500 ease-out"
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M12 5v14M5 12l7 7 7-7"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<!-- ── About teaser ────────────────────────── -->
+<section id="about" class="py-24 px-6 scroll-mt-24">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div data-animate>
+        <p class="text-xs font-mono text-accent mb-2">01 —</p>
+        <h2 class="font-display text-3xl font-semibold mb-6">
+          {t("about.title")}
+        </h2>
+        <p class="text-ink/60 leading-relaxed">{t("about.description")}</p>
+        <a
+          href="/cv"
+          class="inline-flex items-center gap-2 mt-8 text-sm text-accent hover:underline underline-offset-4"
+        >
+          {t("cv.download")} →
+        </a>
+      </div>
+      <!-- Stats / numbers -->
+      <div class="grid grid-cols-2 gap-4 overflow-hidden" data-animate>
+        {
+          aboutStatsKeys.map((key) => (
+            <div class="p-6 border border-subtle rounded-lg bg-surface-1 text-center">
+              <p class="font-display text-4xl font-semibold text-accent">
+                {t(`about.stats.${key}.value`)}
+              </p>
+              <p class="text-xs text-ink/40 mt-1">
+                {t(`about.stats.${key}.label`)}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="py-24 px-6 border-t border-subtle scroll-mt-24">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-12 flex items-end justify-between gap-4" data-animate>
+      <div>
+        <p class="text-xs font-mono text-accent mb-2">02 —</p>
+        <h2 class="font-display text-3xl font-semibold">
+          {t("stack.title")}
+        </h2>
+        <p class="text-ink/40 mt-2 text-sm">
+          {t("stack.subtitle")}
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href="/portfolio"
+        class="text-sm text-accent hover:underline underline-offset-4 whitespace-nowrap"
+      >
+        {t("portfolio.viewAll")} →
+      </a>
+    </div>
+
+    <!-- Accordion -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        projectGroups.map((group) => (
+          <ProjectCard
+            category={group.category}
+            projects={group.projects}
+            image={group.image}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<section id="saas" class="py-24 px-6 border-t border-subtle scroll-mt-24">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-12 flex items-end justify-between gap-4" data-animate>
+      <div>
+        <p class="text-xs font-mono text-accent mb-2">03 —</p>
+        <h2 class="font-display text-3xl font-semibold">
+          {t("saas.title")}
+        </h2>
+        <p class="text-ink/40 mt-2 text-sm">
+          {t("saas.subtitle")}
+        </p>
+      </div>
+
+      <a
+        href="/saas"
+        class="text-sm text-accent hover:underline underline-offset-4 whitespace-nowrap"
+      >
+        {t("saas.viewAll")} →
+      </a>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {saasProducts.map((product) => <SaaSCard {...product} />)}
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact Section ────────────────────── -->
+<section id="contact" class="py-24 px-6 border-t border-subtle scroll-mt-24">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-12" data-animate>
+      <p class="text-xs font-mono text-accent mb-2">04 —</p>
+      <h2 class="font-display text-3xl font-semibold mb-2">
+        {t("contact.title")}
+      </h2>
+      <p class="text-ink/60">
+        {t("contact.subtitle")}
+      </p>
+    </div>
+
+    <ContactForm lang={lang} />
+  </div>
+</section>
+
+<script>
+  const navButton = document.getElementById("section-nav-button");
+  const navIcon = document.getElementById("section-nav-icon");
+
+  if (navButton instanceof HTMLButtonElement && navIcon instanceof SVGElement) {
+    const ids = JSON.parse(navButton.dataset.sectionIds ?? "[]");
+    const sections = ids
+      .map((id: string) => document.getElementById(id))
+      .filter((section: HTMLElement) => section instanceof HTMLElement);
+
+    let direction = navButton.dataset.direction === "up" ? "up" : "down";
+    let rotation = Number(navButton.dataset.rotation ?? "0");
+
+    const setDirection = (nextDirection: string) => {
+      if (direction === nextDirection) return;
+
+      direction = nextDirection;
+      rotation += 180;
+      navButton.dataset.direction = direction;
+      navButton.dataset.rotation = String(rotation);
+      navIcon.style.transform = `rotate(${rotation}deg)`;
+      navButton.setAttribute(
+        "aria-label",
+        direction === "down"
+          ? "Ir a la siguiente seccion"
+          : "Volver a la seccion anterior",
+      );
+    };
+
+    const getActiveIndex = () => {
+      const anchor = window.innerHeight * 0.35;
+
+      return sections.reduce(
+        (closestIndex: string, section: HTMLElement, index: string) => {
+          const distance = Math.abs(
+            section.getBoundingClientRect().top - anchor,
+          );
+          const closestDistance = Math.abs(
+            sections[closestIndex].getBoundingClientRect().top - anchor,
+          );
+
+          return distance < closestDistance ? index : closestIndex;
+        },
+        0,
+      );
+    };
+
+    const syncDirectionWithScroll = () => {
+      if (!sections.length) return;
+
+      const activeIndex = getActiveIndex();
+
+      if (activeIndex >= sections.length - 1) {
+        setDirection("up");
+        return;
+      }
+
+      if (activeIndex <= 0) {
+        setDirection("down");
+      }
+    };
+
+    const goToSection = () => {
+      if (!sections.length) return;
+
+      const activeIndex = getActiveIndex();
+      const targetIndex =
+        direction === "down"
+          ? Math.min(activeIndex + 1, sections.length - 1)
+          : Math.max(activeIndex - 1, 0);
+
+      sections[targetIndex]?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    };
+
+    syncDirectionWithScroll();
+    navButton.addEventListener("click", goToSection);
+    window.addEventListener("scroll", syncDirectionWithScroll, {
+      passive: true,
+    });
+    window.addEventListener("resize", syncDirectionWithScroll);
+  }
+</script>
